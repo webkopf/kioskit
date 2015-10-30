@@ -876,9 +876,9 @@ static void on_document_loaded(WebKitWebView* web_view) {
 
 	WebKitDOMDocument* domDocument = webkit_web_view_get_dom_document(web_view);
 
-	WebKitDOMHTMLElement* body = webkit_dom_document_get_body(domDocument);
+//	WebKitDOMHTMLElement* body = webkit_dom_document_get_body(domDocument);
 
-	webkit_dom_element_set_attribute(body, "style", "background: pink", NULL);
+//	webkit_dom_element_set_attribute(body, "style", "background: pink", NULL);
 
 	g_print("blubb");
 
