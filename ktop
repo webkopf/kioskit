@@ -1,0 +1,3 @@
+#!/bin/sh
+openbox --config-file ~/.config/openbox/LXDE-rc.xml --startup tint2 &
+kioskit  -CZFD+-zbhrqfpoklgtjneduwxyavcsmi:#=?! 

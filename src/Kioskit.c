@@ -34,17 +34,17 @@ static gboolean private_browsing = TRUE;
 static gboolean no_window = FALSE;
 static gboolean use_dlmanager = TRUE;
 static gboolean open_executable = FALSE;
-static gboolean maximize = TRUE;
+static gboolean maximize = FALSE;
 static gboolean experimental = FALSE;
 static gboolean full_zoom = FALSE;
-static gboolean startpage = TRUE;
+static gboolean startpage = FALSE;
 static gboolean useOMX = TRUE;
 static gboolean page_cache = FALSE;
 static gboolean commands_enabled = FALSE;
 static gboolean show_uri_in_title = FALSE;
 static gboolean no_autoplay = FALSE;
 static gboolean smooth_scrolling = FALSE;
-static gboolean multiple_windows = TRUE;
+static gboolean multiple_windows = FALSE;
 static int defaultw = 1920;
 static int defaulth = 1080;
 static SoupCookieJar* cookiejar;
@@ -70,6 +70,9 @@ static void loadUri(WebKitWebView* webView, gchar* uri) {
 }
 
 static void destroy(GtkWidget* widget, gpointer* data) {
+
+	execl("./dbuscontrolm.sh", "dbuscontrolm.sh", "org.mpris.MediaPlayer2.omxplayer", "stop", NULL);
+
 	if (window_count < 2)
 		gtk_main_quit();
 	window_count--;
@@ -201,8 +204,27 @@ static void toggleDownload(GtkWidget* item, WebKitWebView* webView) {
 	}
 }
 
+
 static void toggleOmx(GtkWidget* item, WebKitWebView* webView) {
-	useOMX = gtk_toggle_tool_button_get_active(GTK_TOGGLE_TOOL_BUTTON(item));
+//	useOMX = gtk_toggle_tool_button_get_active(GTK_TOGGLE_TOOL_BUTTON(item));
+	
+
+//	int pid = 0;
+//	pid = fork();
+//	if (r == 0) {
+//		char *execArgs[] = {"omxplayer", "--win", "50,50,300,300", "/home/pi/mvz/tvp-affenwelten-e01-br-1080p.mp4", NULL};
+//		execvp("omxplayer", execArgs);
+//	}
+
+	popen("omxplayer --win 50,50,300,300 /home/pi/mvz/tvp-affenwelten-e01-br-1080p.mp4", "r");
+
+//	int pid = fork();
+
+//	execl("/bin/sh", "sh", "-c", "omxplayer", "-win", "50,50,300,300", "/home/pi/mvz/tvp-affenwelten-e01-br-1080p.mp4", NULL);
+
+//	pid_t pid = popen2("omxplayer", "--win", "50,50,300,300", "/home/pi/mvz/tvp-affenwelten-e01-br-1080p.mp4");
+
+
 }
 
 static void toggleCommand(GtkWidget* item, WebKitWebView* webView) {
