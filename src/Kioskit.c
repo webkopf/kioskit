@@ -216,7 +216,9 @@ static void toggleOmx(GtkWidget* item, WebKitWebView* webView) {
 //		execvp("omxplayer", execArgs);
 //	}
 
-	popen("omxplayer --win 50,50,300,300 /home/pi/mvz/tvp-affenwelten-e01-br-1080p.mp4", "r");
+	gchar* invocation = "xterm -fn fixed -fullscreen -maximized -bg black -fg black -e omxplayer /home/pi/mvz/tvp-affenwelten-e01-br-1080p.mp4";
+
+	popen(invocation, "r");
 
 //	int pid = fork();
 
